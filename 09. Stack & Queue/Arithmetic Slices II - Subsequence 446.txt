@@ -1,0 +1,37 @@
+
+
+//    https://leetcode.com/problems/arithmetic-slices-ii-subsequence/
+
+//    https://www.codingninjas.com/studio/problems/count-the-ap_3155166
+
+
+import java.util.*;
+class Solution {
+    public int numberOfArithmeticSlices(int[] nums) {
+        int n = nums.length;
+        int ans = 0;
+
+        HashMap<Integer, Integer>[] maps = new HashMap[n];
+        for(int i = 0; i < n; i++){
+            maps[i] = new HashMap<>();
+        }
+
+        for(int i = 1; i < maps.length; i++){
+            for(int j = 0; j < i; j++){
+                long cd = (long)nums[i] - (long)nums[j];   // cd = common difference
+
+                if(cd <= Integer.MIN_VALUE || cd >= Integer.MAX_VALUE){
+                    continue;
+                }
+
+                int endsOnJ = maps[j].getOrDefault((int)cd, 0);
+                int endsOnI = maps[i].getOrDefault((int)cd, 0);
+
+                ans += endsOnJ;
+                maps[i].put((int)cd, endsOnI + endsOnJ + 1);
+            }
+        }
+
+        return ans;
+    }
+}
