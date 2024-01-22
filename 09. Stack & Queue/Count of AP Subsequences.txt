@@ -1,0 +1,38 @@
+
+
+//    https://www.geeksforgeeks.org/problems/count-of-ap-subsequences0016/1
+
+
+import java.util.*;
+class Solution{
+
+    static long count(int N, int nums[])
+    {
+        int n = nums.length;
+        int ans = n + 1;
+
+        HashMap<Integer, Integer>[] maps = new HashMap[n];
+        for(int i = 0; i < n; i++){
+            maps[i] = new HashMap<>();
+        }
+
+        for(int i = 1; i < maps.length; i++){
+            for(int j = 0; j < i; j++){
+                int cd = nums[i] - nums[j];   // cd = common difference
+
+                if(maps[j].containsKey(cd)){
+                    int endsOnJ = maps[j].get(cd) + 1;
+                    int endsOnI = maps[i].getOrDefault(cd, 0);
+                    maps[i].put(cd, endsOnI + endsOnJ);
+                    ans += endsOnJ;
+                }else{
+                    maps[i].put(cd, maps[i].getOrDefault(cd, 0) + 1);
+                    ans += 1;
+                }
+
+            }
+        }
+
+        return ans;
+    }
+}
