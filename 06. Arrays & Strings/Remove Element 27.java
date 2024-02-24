@@ -1,0 +1,19 @@
+
+
+//   https://leetcode.com/problems/remove-element/description/
+
+
+class Solution {
+    public int removeElement(int[] nums, int n) {
+        int cnt = 0;
+        for(int i = 0; i < nums.length; i++){
+            if(nums[i] != n){
+                nums[cnt] = nums[i];
+                cnt++;
+            }
+        }
+
+        return cnt;
+
+    }
+}
