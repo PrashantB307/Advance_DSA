@@ -1,28 +1,30 @@
 
-import java.util.*;
-class Solution{
 
+//   https://www.geeksforgeeks.org/problems/maximum-occured-integer4602/1
+
+
+class Solution{
     public static int maxOccured(int L[], int R[], int n, int maxx){
         
-        HashMap<Integer, Integer> map = new HashMap<>();
+        int[] arr = new int[maxx + 2];
+
         for(int i = 0; i < n; i++){
-            fill(L[i], R[i], map);
+            arr[L[i]]++;
+            arr[R[i] + 1]--;
         }
 
-        int num = 0;
-        for(int val : map.keySet()){
-            if(val > num){
-                num = val;
+        for(int i = 1; i < arr.length; i++){
+            arr[i] = arr[i] + arr[i - 1];
+        }
+
+        int res = 0;
+        for(int i = 0; i < arr.length; i++){
+            if(arr[i] > arr[res]){
+                res = i;
             }
         }
 
-        return num;
-    }
-
-    static void fill(int i, int j, HashMap<Integer, Integer> map){
-        for(int ii = i; ii <= j; ii++){
-            map.put(i, map.getOrDefault(i, 0) + 1);
-        }
+        return res;
     }
     
 }
