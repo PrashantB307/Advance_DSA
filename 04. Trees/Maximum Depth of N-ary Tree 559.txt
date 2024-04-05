@@ -1,0 +1,29 @@
+
+
+//   https://leetcode.com/problems/maximum-depth-of-n-ary-tree/
+
+
+class Node {
+    int val;
+    Node left, right;
+
+    Node(int item) {
+        val = item;
+        left = right = null;
+    }
+}
+
+class Solution {
+    public int maxDepth(Node root) {
+        if (root == null)
+            return 0;
+        if (root.children.size() == 0)
+            return 1;
+        int height = 0;
+        for (Node child : root.children) {
+            int recAns = maxDepth(child);
+            height = Math.max(height, recAns);
+        }
+        return height + 1;
+    }
+}
