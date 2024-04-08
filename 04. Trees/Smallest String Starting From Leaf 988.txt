@@ -1,0 +1,59 @@
+
+
+//   https://leetcode.com/problems/smallest-string-starting-from-leaf/description/
+
+
+import java.util.*;
+class TreeNode {
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int item) {
+        val = item;
+        left = right = null;
+    }
+}
+
+class Solution {
+
+    List<List<Integer>> res;
+
+    public String smallestFromLeaf(TreeNode root) {
+
+        res = new ArrayList<>();
+        List<Integer> list = new ArrayList<>();
+
+        traverse(root, list);
+
+        List<String> ans = new ArrayList<>();
+        for (List<Integer> l : res) {
+            StringBuilder sb = new StringBuilder();
+            for (int val : l) {
+                char ch = (char) (val + 'a');
+                sb.append(ch);
+            }
+
+            String str = sb.reverse().toString();
+            ans.add(str);
+        }
+
+        Collections.sort(ans);
+
+        return ans.get(0);
+    }
+
+    public void traverse(TreeNode node, List<Integer> list) {
+        if (node == null) {
+            return;
+        }
+
+        list.add(node.val);
+        if (node.left == null && node.right == null) {
+            res.add(list);
+            return;
+        }
+
+        traverse(node.left, new ArrayList(list));
+        traverse(node.right, new ArrayList(list));
+    }
+}
