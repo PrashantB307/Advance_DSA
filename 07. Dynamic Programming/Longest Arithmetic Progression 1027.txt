@@ -1,0 +1,35 @@
+
+
+//  https://www.geeksforgeeks.org/problems/longest-arithmetic-progression1019/1
+
+//  https://leetcode.com/problems/longest-arithmetic-subsequence/
+
+
+import java.util.*;
+class Solution {
+    int lengthOfLongestAP(int[] A, int n) {
+        
+        HashMap<Integer, Integer>[] map = new HashMap[n];
+        if(n <= 2){
+            return n;
+        }
+
+        for(int i = 0; i < n; i++){
+            map[i] = new HashMap<>();
+        }
+
+        int ans = 0;
+
+        for(int i = 1; i < n; i++){
+            for(int j = 0; j < i; j++){
+                int diff = A[i] - A[j];
+
+                map[i].put(diff, map[j].getOrDefault(diff, 1) + 1);
+
+                ans = Math.max(ans, map[i].get(diff));
+            }
+        }
+
+        return ans;
+    }
+}
