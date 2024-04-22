@@ -1,0 +1,37 @@
+
+
+//   https://leetcode.com/problems/combination-sum-iii
+
+//   https://www.geeksforgeeks.org/problems/combination-sum-iii/1
+
+
+import java.util.*;
+class Solution {
+    public List<List<Integer>> combinationSum3(int k, int n) {
+        
+        List<List<Integer>> res = new ArrayList<>();
+
+        combinations(1, k, n, new LinkedList(), res);
+
+        return res;
+    }
+
+    void combinations(int st, int k, int n, LinkedList li, List<List<Integer>> res){
+
+        if(k < 0 || n < 0){
+            return;
+        }
+
+        if(k == 0 && n == 0){
+            res.add(new ArrayList(li));
+            return;
+        }
+
+        for(int i = st; i <= 9; i++){
+            li.add(i);
+            combinations(i + 1, k - 1, n - i, li, res);
+            li.removeLast();
+        }
+    }
+
+}
