@@ -15,7 +15,6 @@ class Solution
             }else{
                 cst++;
             }
-            
             if(cst > x){
                 return false;
             }
