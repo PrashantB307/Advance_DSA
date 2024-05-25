@@ -28,13 +28,13 @@ class Solution
         pq.add(new Pair(0, S));
 
         while (pq.size() > 0) {
-            int dist = pq.peek().dist;
-            int node = pq.peek().node;
-            pq.remove();
+            Pair curr = pq.remove();
+            int dist = curr.dist;
+            int node = curr.node;
 
             for(int i = 0; i < adj.get(node).size(); i++){
-                int adjDist = adj.get(node).get(i).get(0);
-                int adjNode = adj.get(node).get(i).get(1);
+                int adjDist = adj.get(node).get(i).get(1);
+                int adjNode = adj.get(node).get(i).get(0);
 
                 if(dist + adjDist < res[adjNode]){
                     res[adjNode] = dist + adjDist;
