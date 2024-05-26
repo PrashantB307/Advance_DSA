@@ -6,18 +6,45 @@
 
 
 import java.util.*;
-class TreeNode{
-    int val;
-    TreeNode left;
-    TreeNode right;
-    TreeNode(int val){
-        this.val = val;
-        left=null;
-        right=null;
-    }
+class TreeNode {
+  int val;
+  TreeNode left;
+  TreeNode right;
+
+  TreeNode(int val) {
+    this.val = val;
+    left = null;
+    right = null;
+  }
 }
 
+
 class Solution {
+  public static void solve(TreeNode root, List<Integer> ans) {
+
+    if (root == null) {
+      return;
+    }
+
+    solve(root.left, ans);
+    ans.add(root.val);
+    solve(root.right, ans);
+  }
+
+  public List<Integer> inorderTraversal(TreeNode root) {
+    List<Integer> ans = new ArrayList<>();
+
+    solve(root, ans);
+
+    return ans;
+  }
+}
+
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=======>   OLD Version   <======XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+class Solution2 {
   public List<Integer> inorderTraversal(TreeNode root) {
     List<Integer> ans = new ArrayList<>();
 
