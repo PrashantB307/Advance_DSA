@@ -5,6 +5,18 @@
 //  https://practice.geeksforgeeks.org/problems/print-a-binary-tree-in-vertical-order/1
 
 
+import java.util.*;
+class TreeNode
+{
+    int val;
+    TreeNode left, right;
+
+    TreeNode(int item)
+    {
+        val = item;
+        left = right = null;
+    }
+}
 class Solution {
 
     static class Pair implements Comparable<Pair> {
