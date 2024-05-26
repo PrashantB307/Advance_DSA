@@ -5,20 +5,47 @@
 //  https://practice.geeksforgeeks.org/problems/preorder-traversal/1
 
 
-
 import java.util.*;
-class TreeNode{
+class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
-    TreeNode(int val){
+
+    TreeNode(int val) {
         this.val = val;
-        left=null;
-        right=null;
+        left = null;
+        right = null;
     }
 }
 
 class Solution {
+    static void solve(TreeNode root, List<Integer> ans) {
+
+        if (root == null) {
+            return;
+        }
+
+        ans.add(root.val);
+        solve(root.left, ans);
+        solve(root.right, ans);
+
+    }
+
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ans = new ArrayList<>();
+
+        solve(root, ans);
+
+        return ans;
+
+    }
+}
+
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=======>    OLD Version     <=======XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+class Solution2 {
     public List<Integer> preorderTraversal(TreeNode root) {
         List<Integer> ans = new ArrayList<>();
 
@@ -36,7 +63,6 @@ class Solution {
 
                 if (iop.right == null) {
                     ans.add(curr.val);
-                    
                     iop.right = curr;
                     curr = curr.left;
                 } else {
