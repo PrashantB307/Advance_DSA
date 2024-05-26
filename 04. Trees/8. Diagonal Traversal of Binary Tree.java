@@ -4,16 +4,50 @@
 
 
 import java.util.*;
-class Node{
-    int data;
-    Node left;
-    Node right;
-    Node(int data){
-        this.data = data;
-        left=null;
-        right=null;
-    }
+class Node {
+     int data;
+     Node left;
+     Node right;
+
+     Node(int data) {
+          this.data = data;
+          left = null;
+          right = null;
+     }
 }
+
+class Tree2 {
+     public ArrayList<Integer> diagonal(Node root) {
+          ArrayList<Integer> ans = new ArrayList<>();
+          Queue<Node> q = new LinkedList<>();
+          q.add(root);
+
+          while (q.size() > 0) {
+               int n = q.size();
+
+               for (int i = 0; i < n; i++) {
+                    Node rem = q.remove();
+
+                    while (rem != null) {
+                         ans.add(rem.data);
+
+                         if (rem.left != null) {
+                              q.add(rem.left);
+                         }
+
+                         rem = rem.right;
+                    }
+               }
+
+          }
+
+          return ans;
+     }
+}
+
+
+// XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX====>     OLD Version     <=====XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
 
 class Tree {
      static int md = 0;
