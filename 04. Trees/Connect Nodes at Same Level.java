@@ -1,53 +1,50 @@
 
 
-//   https://www.geeksforgeeks.org/problems/connect-nodes-at-same-level/1
-
-//   https://www.codingninjas.com/studio/problems/connect-nodes-at-same-level_985347
+//   https://www.geeksforgeeks.org/problems/connect-nodes-at-same-level--170647/1
 
 
 import java.util.*;
-class Node {
+class Node{
     int data;
     Node left;
     Node right;
     Node nextRight;
-
-    Node(int data) {
+    Node(int data){
         this.data = data;
-        left = null;
-        right = null;
+        left=null;
+        right=null;
         nextRight = null;
     }
 }
 
 class Solution {
     public void connect(Node root) {
-
+       
         Queue<Node> q = new LinkedList<>();
         q.add(root);
-
+        
         while (q.size() > 0) {
             int n = q.size();
-            ArrayList<Node> list = new ArrayList<>();
-
+            Node prev = null;
+            
             for(int i = 0; i < n; i++){
-                Node rem = q.remove();
-                list.add(rem);
+                Node curr = q.remove();
 
-                if(rem.left != null){
-                    q.add(rem.left);
+                if(prev != null){
+                    prev.nextRight = curr;
+                }
+                prev = curr;
+
+                if(curr.left != null){
+                    q.add(curr.left);
                 }
 
-                if(rem.right != null){
-                    q.add(rem.right);
+                if(curr.right != null){
+                    q.add(curr.right);
                 }
             }
 
-            list.add(null);
-
-            for(int i = 0; i < n; i++){
-                list.get(i).nextRight = list.get(i + 1);
-            }
+            prev.nextRight = null;
         }
     }
 }
