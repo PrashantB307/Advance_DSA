@@ -27,3 +27,30 @@ class GfG
         return max;
     }	
 }
+
+
+//XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX=====>   NEW    <=====XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+
+
+class Solution {
+    long max_sum(int arr[], int n) {
+        long sum = 0;
+        long preSum = 0;
+
+        for(int i = 0; i < n ; i++){
+            preSum += arr[i] * (long)i;
+            sum += arr[i];
+        }
+
+        long max = preSum;
+
+        for(int i = 1; i < n ;i++){
+            long currSum = preSum - (sum - arr[i - 1]) + (long)arr[i - 1] * (n - 1);
+            preSum = currSum;
+
+            max = Math.max(max, currSum);
+        }
+
+        return max;
+    }	
+}
