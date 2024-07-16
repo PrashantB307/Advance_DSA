@@ -30,3 +30,25 @@ class Solution {
        return str;
     }
 }
+
+
+//====================================================================================
+
+
+class Solution2 {
+    public String printString(String s, char ch, int cnt) {
+        
+        for(int i = 0; i < s.length(); i++){
+            char c = s.charAt(i);
+            if(c == ch){
+                cnt--;
+            }
+
+            if(cnt == 0 && i < s.length()){
+                return s.substring(i + 1);
+            }
+        }
+
+        return "";
+    }
+}
